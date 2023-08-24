@@ -93,31 +93,6 @@ export function tint(ctx, tintColor, canvasWidth, canvasHeight){
     ctx.drawImage(tmpCanvas, 0, 0);
 }
 
-/**
- * 
- * @param {CanvasRenderingContext2D} ctx 
- * @param {HTMLCanvasElement} canvas 
- */
- export function rotate(ctx, canvas){
-
-   let editedImage = ctx.getImageData(0, 0, canvas.width , canvas.height);
-
-    for (let y = 0; y < canvas.height; y++) {
-      for (let x = 0; x < canvas.width; x++) {
-        const destIndex = (y * canvas.width + x) * 4;
-        const srcIndex = ((canvas.width - x - 1) * canvas.height + y) * 4;
-  
-        editedImage.data[destIndex] = editedImage.data[srcIndex];
-        editedImage.data[destIndex + 1] = editedImage.data[srcIndex + 1];
-        editedImage.data[destIndex + 2] = editedImage.data[srcIndex + 2];
-        editedImage.data[destIndex + 3] = editedImage.data[srcIndex + 3];
-      }
-    }
-  
-    canvas.width = canvas.height;
-    canvas.height = editedImage.width;
-    ctx.putImageData(editedImage, 0, 0);
-}
 
 
 
